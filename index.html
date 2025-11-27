@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Crear Tareas</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ===================================== -->
+    <!-- ✅ PARTE DE LEONARDO (ESTRUCTURA BASE) -->
+    <!-- ===================================== -->
+    <div class="container">
+      <!-- ENCABEZADO -->
+      <header class="app-header">
+        <h1>Crear Tareas</h1>
+        <p class="subtitle">
+          Añade tareas rápidamente y mantenlas organizadas.
+        </p>
+      </header>
+
+      <!-- FORMULARIO -->
+      <section class="form-card">
+        <form id="form-tarea" class="task-form">
+          <div class="field">
+            <label for="titulo">Título</label>
+            <input
+              type="text"
+              id="titulo"
+              placeholder="Escribe un título"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="detalle">Detalle</label>
+            <textarea
+              id="detalle"
+              placeholder="Escribe los detalles (opcional)"
+            ></textarea>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn">Agregar tarea</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- LISTA DE TAREAS -->
+      <section class="list-card">
+        <h2>Mis tareas</h2>
+        <ul id="tareas" class="task-list">
+          <!-- Aquí app.js inserta las tareas -->
+        </ul>
+        <p id="empty-msg" class="empty">Aún no hay tareas. Agrega una usando el formulario.</p>
+      </section>
+    </div>
+    <!-- ===================================== -->
+    <!-- ✅ FIN DE LA PARTE DE LEONARDO         -->
+    <!-- ===================================== -->
+
+    <!-- ================================================= -->
+    <!-- ✅ ESPACIO DESIGNADO PARA DAVID (SI LLEGARA A -->
+    <!--    AGREGAR ELEMENTOS VISUALES EXTRA EN EL FUTURO) -->
+    <!-- ================================================= -->
+    <!--
+      DAVID PUEDE AGREGAR AQUÍ:
+      - Animaciones adicionales
+      - Íconos
+      - Decoraciones visuales
+      - No debe tocar los IDs del formulario
+  -->
+    <!-- ================================================= -->
+
+    <script src="app.js"></script>
+  </body>
+</html>
