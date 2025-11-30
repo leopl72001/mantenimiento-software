@@ -1,15 +1,13 @@
-/* =============================== */
-/* ✅ PARTE DE LEONARDO (BASE UI)  */
-/* =============================== */
-
-/* Simple styles: espaciado, bordes, botón bonito y margen en lista */
 :root {
   --spacing: 16px;
   --radius: 8px;
-  --border: #e6e6e6;
-  --muted: #666;
-  --accent: #2563eb;
-  --accent-dark: #1f4fc4;
+  --border: #cccccc; /* Gris más claro para bordes sutiles */
+  --muted: #666; /* Gris para texto secundario */
+  --primary-color: #007bff; /* Azul primario (por ejemplo, un azul brillante) */
+  --primary-dark: #0056b3; /* Azul más oscuro para degradados o hover */
+  --background-color: #f8f9fa; /* Fondo blanco/muy claro */
+  --card-background: #ffffff; /* Fondo de tarjetas blanco puro */
+  --text-color: #212529; /* Color de texto principal oscuro */
 }
 
 * {
@@ -17,13 +15,15 @@
   margin: 0;
   padding: 0;
 }
+
 body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue",
     Arial;
-  color: #111;
-  background: #fff;
+  color: var(--text-color);
+  background: var(--background-color);
   margin: 24px;
 }
+
 .container {
   max-width: 760px;
   margin: 0 auto;
@@ -33,7 +33,7 @@ body {
 /* Tarjetas */
 .form-card,
 .list-card {
-  background: #fff;
+  background: var(--card-background);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: var(--spacing);
@@ -44,10 +44,12 @@ body {
   text-align: center;
   margin-bottom: 20px;
 }
+
 .app-header h1 {
   font-size: 28px;
   margin-bottom: 6px;
 }
+
 .subtitle {
   color: var(--muted);
   font-size: 14px;
@@ -62,121 +64,150 @@ body {
 
 .field label {
   display: block;
-  .task-item.task-delete {
-    opacity: 1;
-    transition: opacity 0.5s ease, transform 0.5s ease, margin 0.5s ease,
-      padding 0.5s ease, height 0.5s ease;
-    height: auto;
-  }
-  .task-item.task-delete {
-    opacity: 0;
-    transform: translateY(-12px) scale(0.98);
-    margin: 0;
-    padding: 0;
-    height: 0;
-    margin-bottom: 6px;
-    font-weight: 600;
-  }
+  font-weight: 600;
+  margin-bottom: 6px;
+}
 
-  .field input,
-  .field textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    font-size: 14px;
-  }
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 14px;
+}
 
-  .field textarea {
-    min-height: 90px;
-    resize: vertical;
-  }
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Sombra de enfoque azul claro */
+}
 
-  .actions {
-    display: flex;
-    justify-content: flex-end;
-  }
+.field textarea {
+  min-height: 90px;
+  resize: vertical;
+}
 
-  /* Botón */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Botón principal (Azul) */
+.btn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(180deg, var(--primary-color), var(--primary-dark));
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 123, 255, 0.18); /* Sombra sutil del color primario */
+  transition: 0.2s;
+  font-weight: 600;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.25);
+}
+
+/* Lista de Tareas */
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-item {
+  background: var(--card-background);
+  border: 1px solid var(--border);
+  padding: 14px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Alineación vertical */
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.task-content {
+  flex-grow: 1;
+}
+
+.task-title {
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--text-color);
+}
+
+.task-detail {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Botón de Icono/Acción (secundario - Blanco/Gris claro) */
+.btn.icon {
+  background: var(--card-background);
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: var(--text-color); /* Color de icono/texto por defecto */
+  box-shadow: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.btn.icon:hover {
+  background: #e9ecef; /* Un gris muy suave al pasar el ratón */
+  border-color: #adadad;
+  transform: none; /* Quitamos el transform para estos botones */
+}
+
+/* Estilos de eliminación (transición) */
+/* El estilo original parecía tener un error en el anidamiento. Lo ajusto: */
+.task-item.task-delete {
+  opacity: 0;
+  transform: translateY(-12px) scale(0.98);
+  margin: 0;
+  padding: 0 14px; /* Mantener padding horizontal para transición visual */
+  height: 0;
+  overflow: hidden; /* Asegurar que el contenido desaparezca */
+  border: 1px solid transparent; /* Transición del borde */
+}
+
+/* Asegurar que el estado no eliminado tenga las propiedades correctas para la transición */
+.task-item:not(.task-delete) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  height: auto;
+  margin-bottom: 12px; /* Espaciado entre elementos */
+  padding: 14px;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 20px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
   .btn {
-    padding: 10px 16px;
-    border-radius: 8px;
-    border: none;
-    background: linear-gradient(180deg, var(--accent), var(--accent-dark));
-    color: #fff;
-    cursor: pointer;
-    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.18);
-    transition: 0.2s;
+    width: 100%;
   }
-
-  .btn:hover {
-    transform: translateY(-2px);
-  }
-
-  /* Lista */
-  .task-list {
-    list-style: none;
-    padding: 0;
-    margin: 18px 0;
-  }
-
   .task-item {
-    border: 1px solid #eee;
-    padding: 14px;
-    border-radius: 6px;
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
+    flex-direction: column;
+    align-items: stretch; /* Estirar elementos en columna */
   }
-
-  .task-title {
-    font-weight: 700;
-    margin-bottom: 6px;
-  }
-
-  .task-detail {
-    color: var(--muted);
-    font-size: 13px;
-  }
-
-  .btn.icon {
-    background: #fff;
-    border: 1px solid #ddd;
-    padding: 6px 10px;
-    border-radius: 6px;
-  }
-
-  .empty {
-    text-align: center;
-    color: var(--muted);
-  }
-
-  /* Responsive */
-  @media (max-width: 600px) {
-    .btn {
-      width: 100%;
-    }
-    .task-item {
-      flex-direction: column;
-    }
-  }
-
-  /* ================================================= */
-  /* ✅ PARTE EXCLUSIVA PARA DAVID (ESTILOS AVANZADOS) */
-  /* ================================================= */
-  /*
-DAVID TRABAJA SOLO AQUÍ 👇
-
-- Puede agregar:
-  ✅ Gradientes
-  ✅ Glassmorphism
-  ✅ Floating
-  ✅ Animaciones
-  ✅ Efectos hover avanzados
-  ✅ Transiciones
-    
-- ❌ PROHIBIDO:
-  - Borrar clases base
-  - Cambiar los IDs del formulario
-*/
+}
+.app-footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 40px;
 }
